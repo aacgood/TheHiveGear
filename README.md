@@ -3,7 +3,7 @@
 ## Introduction
 
 **This is an unofficial build.** 
-TheHive Project maintains the original training virtual machine (OVA) containing TheHive, Cortex as well as Cortex analyzers and responders with all their dependencies included, and ElasticSearch. The training VM runs Ubuntu 18.04 with Oracle JRE 8.  
+TheHive Project maintains the original training virtual machine (OVA) containing TheHive, Cortex as well as Cortex analyzers and responders with all their dependencies included, and ElasticSearch. The training VM runs Ubuntu 18.04.3 LTS with Oracle JRE 8.  
 
 This is an updated training VM containing the the following components
 
@@ -66,6 +66,6 @@ This build does not contain MISP.  The MISP VM can be downloaded from the [Circl
 
 ## Todo
 
-- Inclusion of error checking and handling in the vagrant script
+- Inclusion of error checking, handling and verification in the vagrant/shell script
 - Create build script for Windows based hosts
 - Change elastic from 5.x to 6.x

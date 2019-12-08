@@ -10,7 +10,8 @@ system_update(){
     apt-get upgrade -y
 
     echo "[$(date +%H:%M:%S)]: Download Pre-requsites..."
-    apt-get install zip unzip python3-pip
+    apt-get install zip unzip -y
+    apt-get install python3-pip -y 
 }
 
 install_openjdk(){
@@ -213,7 +214,7 @@ system_cleanup(){
     echo "[$(date +%H:%M:%S)]: Performing clean up"
     cd /opt
     mkdir packages
-    chmod thehive:thehive packages
+    chown thehive:thehive packages
     mv *.zip* packages
     mv PGP-PUBLIC-KEY packages
 }
