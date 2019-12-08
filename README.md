@@ -17,7 +17,7 @@ This is an updated training VM containing the the following components
 - and all Cortex analyzers and responders as of December, 2019.
 
 **Warnings**
-- This OVA file is not designed for production, it is designed as a quick way to test functionality and to see if this product is suitable for your requirements.
+- The OVA/VHD files are not designed for production, it is designed as a quick way to test functionality and to see if this product is suitable for your requirements.
 - The Vagrant file contains an exposed API key for TheHive/Cortex integration specific to this installation.  As such the API key should be considered compromised and not fit for production use.
 
 ## Accounts and Access
@@ -46,12 +46,19 @@ Use `vagrant destroy` to tear it down
 
 ## Downloading the ready made build
 
-The full build has been saved into an OVA file which can be downloaded here: <http://location/to/download>
+The full build is available in the following formats:
+- [OVA](<https://drive.google.com/open?id=17an2ji3SMwXDhayeoQm75oSmcru9te3x>)
+- [VHD](<https://drive.google.com/open?id=1c4Z8IkQgbu0075ZwWdnypHKqsZNYmEDn>)
 
-The SHA256 integrity hash is `hash TBD`.  Confirm this using the `sha256` command.
+The SHA256 integrity hashs are:
+- OVA: `85774E053FE6FADF6F057C6DED5A86614509BCA7D9BE82DEF740A09470739C12`
+- VDH: `635592E2FFB32373B5BAE29F23CB00DF0B212F15C76DCFA7741C69A93759051E`
+
+You can confirm this by using the `sha256` command in Linux or `Get-FileHash -Algorithm SHA256` in Powershell.
 
 This OVA file has been tested under
 - Ubuntu 18.04 / VirtualBox
+- Windows10 / Hyper-V
 
 ## Integration with MISP
 
