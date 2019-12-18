@@ -1,0 +1,831 @@
+[
+    {
+        "id": "7ea6d99.e7ab528",
+        "type": "tab",
+        "label": "TheHive webhook",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "26d57ae7.0e61f6",
+        "type": "http in",
+        "z": "7ea6d99.e7ab528",
+        "name": "TheHive Listener",
+        "url": "/",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 780,
+        "wires": [
+            [
+                "4ea7ad26.d8b014",
+                "6f1aeec9.fed6b"
+            ]
+        ]
+    },
+    {
+        "id": "4ea7ad26.d8b014",
+        "type": "debug",
+        "z": "7ea6d99.e7ab528",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 150,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "f3232417.ab7548",
+        "type": "switch",
+        "z": "7ea6d99.e7ab528",
+        "name": "Operation",
+        "property": "payload.operation",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Creation",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Update",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Delete",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 580,
+        "y": 780,
+        "wires": [
+            [
+                "2e91871f.2932f8"
+            ],
+            [
+                "961b21c6.56f57"
+            ],
+            [
+                "ccba6570.bb9238"
+            ]
+        ],
+        "outputLabels": [
+            "Creation",
+            "Update",
+            "Delete"
+        ]
+    },
+    {
+        "id": "2e91871f.2932f8",
+        "type": "switch",
+        "z": "7ea6d99.e7ab528",
+        "name": "Creation",
+        "property": "payload.objectType",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "case",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_artifact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_task",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_task_log",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_artifact_job",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "alert",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "user",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 7,
+        "x": 900,
+        "y": 480,
+        "wires": [
+            [
+                "29302257.3f092e"
+            ],
+            [
+                "da517b93.936348"
+            ],
+            [
+                "687a1a13.746e34"
+            ],
+            [
+                "51be5a42.044d64"
+            ],
+            [
+                "ad6fcdce.19e2f"
+            ],
+            [
+                "af71b72b.0dbf98"
+            ],
+            [
+                "2b45b53c.42c6ca"
+            ]
+        ],
+        "inputLabels": [
+            "Operation"
+        ],
+        "outputLabels": [
+            "case",
+            "case_artifact",
+            "case_task",
+            "case_task_log",
+            "action",
+            "alert",
+            "user"
+        ],
+        "info": "No webhook data is received for the following events:\n\n- Creation of Dashboard\n- Creation of Case Templates\n"
+    },
+    {
+        "id": "961b21c6.56f57",
+        "type": "switch",
+        "z": "7ea6d99.e7ab528",
+        "name": "Update",
+        "property": "payload.objectType",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "case",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_artifact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_artifact_job",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_task",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_task_log",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "alert",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "user",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 7,
+        "x": 900,
+        "y": 860,
+        "wires": [
+            [
+                "3108fd0b.a3c932"
+            ],
+            [
+                "d973eded.3daa7"
+            ],
+            [
+                "dd29f54d.5e9a88"
+            ],
+            [
+                "b92d2a27.7e55e8"
+            ],
+            [
+                "96206eea.80a63"
+            ],
+            [
+                "5ff1cfde.2088d"
+            ],
+            [
+                "9e0afa22.c05798"
+            ]
+        ],
+        "inputLabels": [
+            "Operation"
+        ],
+        "outputLabels": [
+            "case",
+            "case_artifact",
+            null,
+            "case_task",
+            "case_task_log",
+            "alert",
+            "user"
+        ]
+    },
+    {
+        "id": "ccba6570.bb9238",
+        "type": "switch",
+        "z": "7ea6d99.e7ab528",
+        "name": "Delete",
+        "property": "payload.objectType",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "case",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_artifact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "case_task_log",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 890,
+        "y": 1200,
+        "wires": [
+            [
+                "7273b07d.c8c0e"
+            ],
+            [
+                "e4863b9d.fa5928"
+            ],
+            [
+                "2bd53a8.5feedc6"
+            ]
+        ],
+        "outputLabels": [
+            "case",
+            "case_artifact",
+            ""
+        ],
+        "info": "Deleting a case task doesnt actually trigger a delete event.  It triggers an `update` event where the status = cancelled"
+    },
+    {
+        "id": "9e0afa22.c05798",
+        "type": "switch",
+        "z": "7ea6d99.e7ab528",
+        "name": "User",
+        "property": "payload.object.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Locked",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Ok",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 1130,
+        "y": 980,
+        "wires": [
+            [
+                "baf08649.f466f8"
+            ],
+            [
+                "157926d9.2d2169"
+            ]
+        ]
+    },
+    {
+        "id": "baf08649.f466f8",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "status: Locked",
+        "func": "msg.topic = \"[The Hive] A user account was locked\";\nmsg.from = \"from@example.com\";\nmsg.to = \"to@example.com\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1480,
+        "y": 980,
+        "wires": [
+            [
+                "f212b888.c914d8"
+            ]
+        ],
+        "info": "- User account was locked"
+    },
+    {
+        "id": "157926d9.2d2169",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "status: Ok",
+        "func": "msg.topic = \"[The Hive] A user account was changed\";\nmsg.from = \"from@example.com\";\nmsg.to = \"to@example.com\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1460,
+        "y": 1020,
+        "wires": [
+            [
+                "f212b888.c914d8"
+            ]
+        ],
+        "info": "- User account was unlocked\n- User description was changed\n- User role was changed\n- User API key was added\n- User API key was revoked\n"
+    },
+    {
+        "id": "96f3e773.cdcfb8",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "status: Open",
+        "func": "// Fires when a Case is updated AND status = open\n// This can include things like TLP/PAP changes\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1473,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3108fd0b.a3c932",
+        "type": "switch",
+        "z": "7ea6d99.e7ab528",
+        "name": "case",
+        "property": "payload.object.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Open",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1130,
+        "y": 740,
+        "wires": [
+            [
+                "96f3e773.cdcfb8",
+                "a8adaea4.37054"
+            ]
+        ],
+        "info": "- A case was modified"
+    },
+    {
+        "id": "f212b888.c914d8",
+        "type": "e-mail",
+        "z": "7ea6d99.e7ab528",
+        "server": "your smtp server",
+        "port": "587",
+        "secure": false,
+        "tls": false,
+        "name": "",
+        "dname": "",
+        "x": 1710,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "da517b93.936348",
+        "type": "switch",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_artifact: Run Analyzer",
+        "property": "payload.object.dataType",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ip",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "file",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "hash",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "autonomous-system",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 1203,
+        "y": 260,
+        "wires": [
+            [
+                "354f4574.77195a"
+            ],
+            [
+                "88b7bbd4.d79c48"
+            ],
+            [
+                "2cd9d680.7efdaa"
+            ],
+            [
+                "a9092498.d7b908",
+                "b82ad2a7.c784b"
+            ]
+        ],
+        "info": "# References\n\n<https://github.com/TheHive-Project/TheHiveDocs/blob/master/api/connectors/cortex/job.md>\n"
+    },
+    {
+        "id": "6f1aeec9.fed6b",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "Add headers",
+        "func": "msg.thehive_url = 'https://thehive.example.com';\nmsg.cortex_url = 'https://cortex.example.com';\nmsg.cortex_id = 'CORTEX-SERVER';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 780,
+        "wires": [
+            [
+                "f3232417.ab7548"
+            ]
+        ]
+    },
+    {
+        "id": "354f4574.77195a",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "ip: Run Analyzer: DShield",
+        "func": "// dataType = \"ip\"\n// Sample code that triggers the DShield analyzer\n// The analyzer_id will be specific to your instance\n\n// DShield = 350020541599e77ee68c9c9e5cc295fb\n\nmsg.analyzer_id = \"350020541599e77ee68c9c9e5cc295fb\";\nmsg.artifact_id = msg.payload.objectId\n\nmsg.url = msg.thehive_url + '/api/connector/cortex/job';\nmsg.payload = {\n    'cortexId' : msg.cortex_id,\n    'artifactId': msg.artifact_id,\n    'analyzerId': msg.analyzer_id\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1633,
+        "y": 180,
+        "wires": [
+            [
+                "d5a2504c.3753",
+                "92cb4ec.43ca5b"
+            ]
+        ]
+    },
+    {
+        "id": "d5a2504c.3753",
+        "type": "http request",
+        "z": "7ea6d99.e7ab528",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "bearer",
+        "x": 2093,
+        "y": 280,
+        "wires": [
+            [
+                "92cb4ec.43ca5b"
+            ]
+        ]
+    },
+    {
+        "id": "a8adaea4.37054",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "status: Resolved",
+        "func": "// Fires when a case is closed (resolved)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1493,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29302257.3f092e",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case",
+        "func": "// Fires when a case is created\n// or when a responder is generated against a case\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1133,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2cd9d680.7efdaa",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "hash",
+        "func": "// Fires when the case artifact is a hash\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1573,
+        "y": 260,
+        "wires": [
+            [
+                "d5a2504c.3753"
+            ]
+        ]
+    },
+    {
+        "id": "88b7bbd4.d79c48",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "file: Run Analyzer: VirusTotal Scan",
+        "func": "// dataType = \"file\"\n// Sample code that triggers the Virustotal Scan analyzer\n// The analyzer_id will be specific to your instance\n\n// Virustotal scan = b32060a0b10cd04a2f5ec8d852d9f8ce\n\nmsg.analyzer_id = \"b32060a0b10cd04a2f5ec8d852d9f8ce\";\nmsg.artifact_id = msg.payload.objectId\n\nmsg.url = msg.thehive_url + '/api/connector/cortex/job';\nmsg.payload = {\n    'cortexId' : msg.cortex_id,\n    'artifactId': msg.artifact_id,\n    'analyzerId': msg.analyzer_id\n};\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1663,
+        "y": 220,
+        "wires": [
+            [
+                "d5a2504c.3753"
+            ]
+        ]
+    },
+    {
+        "id": "687a1a13.746e34",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_task",
+        "func": "// Fires when a case task is created\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1143,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "51be5a42.044d64",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_task_log",
+        "func": "// Fires when a case task log is created\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1163,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad6fcdce.19e2f",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_artifact_job",
+        "func": "// Fires when a Responder or Analyzser is Run on an existing observable\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1173,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dd29f54d.5e9a88",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_artifact_job",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1170,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af71b72b.0dbf98",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "alert",
+        "func": "// Fires when an alert is created (could be MISP integration)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1133,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9092498.d7b908",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "autonomous-system",
+        "func": "// Fires when the case artifact is autonomous-system\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1623,
+        "y": 300,
+        "wires": [
+            [
+                "d5a2504c.3753"
+            ]
+        ]
+    },
+    {
+        "id": "b82ad2a7.c784b",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "domain",
+        "func": "// Fires when the case artifact is a domain\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1583,
+        "y": 340,
+        "wires": [
+            [
+                "d5a2504c.3753"
+            ]
+        ]
+    },
+    {
+        "id": "ebdd77db.09abd8",
+        "type": "comment",
+        "z": "7ea6d99.e7ab528",
+        "name": "etc + Notes",
+        "info": "The first 2 functions are operable to \nFirst runs an IP observable against DSheild\nThe second runs an uploaded file to VirusTotal\n\nThe structure of the function\n`msg.analyzer_id` can be discovered by running this command: curl \"http://127.0.0.1:9001/api/analyzer\" -H 'Authorization: Bearer API KEY' and looking for the id of the specific analyzer you are after\n`msg.artifact_id` will come along with the webhook\n`msg.thehive_url` and `msg.cortexId` are set on the opening function (\"add headers\")\n// Reference: <https://github.com/TheHive-Project/CortexDocs/blob/master/api/api-guide.md#list-and-search-1>\n\nOut of the box options are:\n- autonomous-system\n- domain\n- file\n- filename\n- fqdn\n- hash\n- ip\n- mail\n- mail_subject\n- other\n- regex\n- registry\n- uri_path\n- url\n- useragent\n\nOnce the analyzer has run the reporting result will attach straight onto observable as if you were manually performing this action from TheHive UI",
+        "x": 1593,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "2b45b53c.42c6ca",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "user",
+        "func": "// Fires when a user is created\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1133,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92cb4ec.43ca5b",
+        "type": "debug",
+        "z": "7ea6d99.e7ab528",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 2313,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d973eded.3daa7",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_artifact",
+        "func": "// Fires when an artifact is updated\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1150,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b92d2a27.7e55e8",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_task",
+        "func": "// Fires when a case task is updated\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1140,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "96206eea.80a63",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_task_log",
+        "func": "//Fires when a case_task_log is updated\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1160,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ff1cfde.2088d",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "alert",
+        "func": "//Fires when an alert is updated\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1130,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7273b07d.c8c0e",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case",
+        "func": "//Fires when a case is deleted\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1130,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4863b9d.fa5928",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_artifact",
+        "func": "//Fires when a case_artifact is deleted\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1150,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2bd53a8.5feedc6",
+        "type": "function",
+        "z": "7ea6d99.e7ab528",
+        "name": "case_task_log",
+        "func": "//Fires when a case_task_log is deleted\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1160,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    }
+]

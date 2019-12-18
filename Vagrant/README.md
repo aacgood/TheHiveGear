@@ -3,7 +3,7 @@
 ## Introduction
 
 **This is an unofficial build.** 
-TheHive Project maintains the original training virtual machine (OVA) containing TheHive, Cortex as well as Cortex analyzers and responders with all their dependencies included, and ElasticSearch. The training VM runs Ubuntu 18.04.3 LTS with Oracle JRE 8.  
+TheHive Project maintains the original training virtual machine (OVA) containing TheHive, Cortex as well as Cortex analyzers and responders with all their dependencies included, and ElasticSearch. The training VM runs Ubuntu 18.04.3 LTS with Oracle JRE 8.
 
 This is an updated training VM containing the the following components
 
@@ -17,7 +17,7 @@ This is an updated training VM containing the the following components
 - and all Cortex analyzers and responders as of December, 2019.
 
 **Warnings**
-- The OVA/VHD files are not designed for production, it is designed as a quick way to test functionality and to see if this product is suitable for your requirements.
+- The resulting virtual machine is not designed for production, it is designed as a quick way to test functionality and to see if this product is suitable for your requirements.
 - The Vagrant file contains an exposed API key for TheHive/Cortex integration specific to this installation.  As such the API key should be considered compromised and not fit for production use.
 
 ## Accounts and Access
@@ -44,22 +44,6 @@ Create a new folder and clone this repository
 Use `vagrant up` to build the environment
 Use `vagrant destroy` to tear it down
 
-## Downloading the ready made build
-
-The full build is available in the following formats:
-- [OVA](<https://drive.google.com/open?id=17an2ji3SMwXDhayeoQm75oSmcru9te3x>)
-- [VHD](<https://drive.google.com/open?id=1c4Z8IkQgbu0075ZwWdnypHKqsZNYmEDn>)
-
-The SHA256 integrity hashs are:
-- OVA: `85774E053FE6FADF6F057C6DED5A86614509BCA7D9BE82DEF740A09470739C12`
-- VDH: `635592E2FFB32373B5BAE29F23CB00DF0B212F15C76DCFA7741C69A93759051E`
-
-You can confirm this by using the `sha256` command in Linux or `Get-FileHash -Algorithm SHA256` in Powershell.
-
-This OVA file has been tested under
-- Ubuntu 18.04 / VirtualBox
-- Windows10 / Hyper-V
-
 ## Integration with MISP
 
 This build does not contain MISP.  The MISP VM can be downloaded from the [Circl.lu site](<https://www.circl.lu/misp-images/latest/>).  Integrating it is a matter of creating a user in MISP, obtaining an auth key, updating `/opt/thehive/conf/application.conf` and restarting TheHive service.
@@ -69,10 +53,11 @@ This build does not contain MISP.  The MISP VM can be downloaded from the [Circl
 - This is a work in progress, but its functional.  
 - All the user accounts and API keys have been pre-configured.
 - As Docker is being used for the Analysers and Responders, there is a delay the first time they are executed as the container is downloaded.  This is normal and subsequent executions of the same analyser or responder should return quicker.
+- I am also currently re-writing this script.
 
 
 ## Todo
 
-- Inclusion of error checking, handling and verification in the vagrant/shell script
+- Inclusion of more error checking, handling and verification in the vagrant/shell script
 - Create build script for Windows based hosts
 - Change elastic from 5.x to 6.x
