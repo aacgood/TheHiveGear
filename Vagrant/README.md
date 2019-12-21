@@ -7,18 +7,17 @@ TheHive Project maintains the original training virtual machine (OVA) containing
 
 This is an updated training VM containing the the following components
 
-- Elasticsearch 5.6
+- Elasticsearch 6.8
 - TheHive 3.4.0
 - Cortex 3.0.0
 - Cortexutils 2.0.0  
 - TheHive4py 1.6.0
 - Cortex4py 2.0.1
 - Report templates
-- and all Cortex analyzers and responders as of December, 2019.
+- All Docker based analysers and responders
 
 **Warnings**
 - The resulting virtual machine is not designed for production, it is designed as a quick way to test functionality and to see if this product is suitable for your requirements.
-- The Vagrant file contains an exposed API key for TheHive/Cortex integration specific to this installation.  As such the API key should be considered compromised and not fit for production use.
 
 ## Accounts and Access
 
@@ -30,7 +29,6 @@ Cortex URL: `http://w.x.y.z:9001`
 
 Cortex SuperAdmin account: `admin` / `thehive1234`  
 Cortex TrainingAdmin account: `thehive` / `thehive1234`  
-TheHive -> Cortex API Key: `xYMjaioc7CCsTPkk2n/Wt7msmZ36RFz8` / `read,write,admin`
 
 ## Building this environment
 
@@ -53,11 +51,9 @@ This build does not contain MISP.  The MISP VM can be downloaded from the [Circl
 - This is a work in progress, but its functional.  
 - All the user accounts and API keys have been pre-configured.
 - As Docker is being used for the Analysers and Responders, there is a delay the first time they are executed as the container is downloaded.  This is normal and subsequent executions of the same analyser or responder should return quicker.
-- I am also currently re-writing this script.
-
+- Upon first load of TheHive you will need to perform a `database update` and which will prompt you to create an `admin` account.
 
 ## Todo
 
 - Inclusion of more error checking, handling and verification in the vagrant/shell script
 - Create build script for Windows based hosts
-- Change elastic from 5.x to 6.x
