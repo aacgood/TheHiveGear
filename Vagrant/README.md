@@ -9,7 +9,7 @@ This is an updated training VM containing the the following components
 
 - Elasticsearch 6.8
 - TheHive 3.4.0
-- Cortex 3.0.0
+- Cortex 3.0.1
 - Cortexutils 2.0.0  
 - TheHive4py 1.6.0
 - Cortex4py 2.0.1

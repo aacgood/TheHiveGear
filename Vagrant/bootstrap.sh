@@ -79,14 +79,14 @@ install_docker(){
 }
 
 install_cortex(){
-    echo "[$(date +%H:%M:%S)]: Downloading Cortex v3.0.0-1"
+    echo "[$(date +%H:%M:%S)]: Downloading Cortex v3.0.1-1"
     cd /opt 
-    wget https://dl.bintray.com/thehive-project/binary/cortex-3.0.0-1.zip >/dev/null 2>&1
-    wget http://dl.bintray.com/thehive-project/binary/cortex-3.0.0-1.zip.asc  >/dev/null 2>&1
-    gpg --verify cortex-3.0.0-1.zip.asc cortex-3.0.0-1.zip
+    wget https://dl.bintray.com/thehive-project/binary/cortex-3.0.1-1.zip >/dev/null 2>&1
+    wget http://dl.bintray.com/thehive-project/binary/cortex-3.0.1-1.zip.asc  >/dev/null 2>&1
+    gpg --verify cortex-3.0.1-1.zip.asc cortex-3.0.1-1.zip
     # Need logic to confirm its ok.....
-    unzip -q cortex-3.0.0-1.zip
-    ln -s cortex-3.0.0-1 cortex
+    unzip -q cortex-3.0.1-1.zip
+    ln -s cortex-3.0.1-1 cortex
 }
 
 install_thehive(){
@@ -135,7 +135,7 @@ _EOF_
     adduser --system cortex
     cp /opt/cortex/package/cortex.service /usr/lib/systemd/system
     chown -R cortex:cortex /opt/cortex
-    chown -R cortex:cortex /opt/cortex-3.0.0-1
+    chown -R cortex:cortex /opt/cortex-3.0.1-1
     chown -R cortex:cortex /var/log/cortex
     chgrp cortex /opt/cortex/conf/application.conf
     chmod 640 /opt/cortex/conf/application.conf
@@ -235,7 +235,7 @@ init_cortex(){
 
     
     echo "[$(date +%H:%M:%S)]: Enabling TheHive / Cortex Integration Key"
-    sed -i 's/^cortex {.*/cortex {\n  "CORTEX" {\n    url = "http:\/\/127.0.0.1:9001"\n    key = '$key'\n    ws {}\n  }\n}/g' /opt/thehive/conf/application.conf
+    sed -i 's/^cortex {.*/cortex {\n  "CORTEX" {\n    url = "http:\/\/127.0.0.1:9001"\n    key = "'$key'"\n    ws {}\n  }\n}/g' /opt/thehive/conf/application.conf
     sed -i '/#"CORTEX-SERVER-ID" {/,+6 d' /opt/thehive/conf/application.conf
 
     echo "[$(date +%H:%M:%S)]: Disabling basic auth for Cortex"
